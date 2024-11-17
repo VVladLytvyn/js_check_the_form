@@ -1,34 +1,5 @@
 'use strict';
 
-// describe(`Function 'validateRegisterForm':`, () => {
-//   const validateRegisterForm = require('./validateRegisterForm');
-
-//   it(`should be declared`, () => {
-//     expect(validateRegisterForm).toBeInstanceOf(Function);
-//   });
-
-//   it(`should return object`, () => {
-//     expect(typeof validateRegisterForm('test@mail.com', 'P@ssword1!'))
-//       .toBe('object');
-//   });
-
-//   it(`should return success message for the valid input`, () => {
-//     const isValid = validateRegisterForm('test@mail.com', 'P@ssword1!');
-
-//     expect(isValid.code).toBe(200);
-//     expect(isValid.message).toBe('Email and password are valid.');
-//   });
-
-//   it(`should return error for valid email and password without number`, () => {
-//     const invalidPassword = validateRegisterForm('test@mail.com', 'P@ssword');
-
-//     expect(invalidPassword.code).toBe(422);
-//     expect(invalidPassword.message).toBe('Password is invalid.');
-//   });
-
-//   // write more tests here
-// });
-
 const validateRegisterForm = require('./validateRegisterForm');
 
 describe('validateRegisterForm', () => {
@@ -41,7 +12,6 @@ describe('validateRegisterForm', () => {
     });
   });
 
-  // Tests for invalid email
   it('should return status 422 if email is invalid (missing @)', () => {
     const result = validateRegisterForm('invalidexample.com', 'Valid@12345');
 
@@ -69,7 +39,6 @@ describe('validateRegisterForm', () => {
     });
   });
 
-  // Tests for invalid password
   it('should return status 422 if password is too short', () => {
     const result = validateRegisterForm('valid@example.com', 'Short1!');
 
@@ -124,7 +93,6 @@ describe('validateRegisterForm', () => {
     });
   });
 
-  // Tests for invalid email and password
   it('should return status 500 if both email and password are invalid', () => {
     const result = validateRegisterForm('invalidexample.com', 'short');
 
